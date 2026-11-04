@@ -1,37 +1,37 @@
-# Twitter（X）数据爬虫 — 由 Bright Data 提供
+# Bright Data Twitter（X）数据抓取工具
 
-[![推广图](https://github.com/bright-cn/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.com/products/web-scraper/twitter)
+[![宣传图](https://github.com/bright-cn/Awesome-Web-Scraping/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner%20CN.png)](https://www.bright.cn/products/web-scraper/twitter)
 
-本仓库提供两种收集 Twitter 数据的方法：
-1. 免费 Twitter 爬虫：适用于小型项目与学习
-2. [企业级 Twitter 爬虫 API](https://www.bright.cn/products/web-scraper/twitter)：适用于生产级数据采集
+此代码库提供两种不同的 Twitter 数据采集方法：
+1. **免费 Twitter 抓取工具**：适用于小型项目和学习
+2. [**企业级 Twitter 爬虫工具 API**](https://www.bright.cn/products/web-scraper/twitter)：适用于生产级数据提取
 
 ## 目录
-1. [免费 Twitter 爬虫](#免费-twitter-爬虫)
+1. [免费 Twitter 抓取工具](#免费-twitter-抓取工具)
     - [个人资料抓取](#1-个人资料抓取)
-    - [推文抓取](#2-推文抓取)
-    - [限制](#限制)
-2. [Twitter 爬虫 API](#twitter-爬虫-api)
-    - [主要特性](#主要特性)
-    - [快速开始指南](#快速开始指南)
-    - [按 URL 抓取推文](#1-按-url-抓取推文)
+    - [帖子抓取](#2-帖子抓取)
+    - [局限性](#局限性)
+2. [Twitter 爬虫工具 API](#twitter-爬虫工具-api)
+    - [主要功能](#主要功能)
+    - [快速入门指南](#快速入门指南)
+    - [按 URL 抓取帖子](#1-按-url-抓取帖子)
     - [抓取个人资料数据](#2-抓取个人资料数据)
     - [按日期范围采集推文](#3-按日期范围采集推文)
-3. [无代码爬虫选项](#无代码爬虫选项)
+3. [无代码抓取工具选项](#无代码抓取工具选项)
 4. [数据采集方式](#数据采集方式)
 5. [支持与资源](#支持与资源)
 
 
-## 免费 Twitter 爬虫
-适合小规模项目、实验与学习用途。
+## 免费 Twitter 抓取工具
+非常适合小型项目、实验和学习。
 
 ### 1. 个人资料抓取
-提取 Twitter 公开个人资料数据，包括姓名、粉丝数、推文数等。
+从 Twitter 提取公开的个人资料数据，包括姓名、关注者数量、推文数量等。
 
 #### 输入要求：
-| 参数       | 类型 | 必填 | 描述                           |
-|------------|------|------|--------------------------------|
-| usernames  | list | 是   | 要抓取的 Twitter 账号列表       |
+| 参数  | 类型  | 必填 | 说明                          |
+|------------|-------|----------|--------------------------------------|
+| usernames  | 列表  | 是      | 要抓取的 Twitter 用户名列表   |
 
 #### 实现：
 ```python
@@ -46,14 +46,14 @@ usernames = [
 #### 示例输出（CSV）：
 <img width="700" alt="twitter_profiles_data" src="https://github.com/bright-cn/twitter-scraper/blob/main/Images/408877618-450d920a-4760-463b-9670-8ac1264b6409.png" />
 
-### 2. 推文抓取
-收集指定推文的互动指标。
+### 2. 帖子抓取
+采集特定推文的互动指标
 
 #### 输入要求：
 
-| 参数       | 类型 | 必填 | 描述                       |
-|------------|------|------|----------------------------|
-| tweet_ids  | list | 是   | 要抓取的 Twitter 推文 ID 列表 |
+| 参数  | 类型  | 必填 | 说明                        |
+|------------|-------|----------|------------------------------------|
+| tweet_ids  | 列表  | 是      | 要抓取的 Twitter 帖子 ID 列表 |
 
 #### 实现：
 ```python
@@ -79,46 +79,46 @@ TWEET_IDS = [
 }
 ```
 
-### 限制
-由于 Twitter 严格的反爬策略，免费方案不适合大规模抓取。主要限制包括：
-- 速率限制：抓取数次后即可能被限流
-- IP 封禁：同一 IP 频繁抓取可能被封禁
-- 可扩展性有限：不适合高并发/高量数据采集
-- 字段受限：仅提供基础资料与推文数据，无高级筛选
+### 局限性
+由于 Twitter 具有严格的反爬虫保护，不建议使用免费方法进行大规模抓取。主要局限性包括：
+- **速率限制：** 抓取几次后，Twitter 就会阻止请求。
+- **IP 封禁：** 频繁使用同一 IP 进行抓取可能导致封禁。
+- **扩展能力有限：** 不适合大规模数据采集。
+- **数据字段受限：** 仅提供基本的个人资料和推文数据，不支持高级筛选。
 
-## Twitter 爬虫 API
-面向大规模 Twitter 数据采集的高可靠、可扩展解决方案。为需要高质量、实时数据且不想自建运维的企业与开发者设计。
+## Twitter 爬虫工具 API
+这是一种稳健、可扩展且可靠的大规模 Twitter 数据提取解决方案，专为需要高质量实时数据，又不想处理基础设施难题的企业和开发者而设计。
 
-### 主要特性
-- 可扩展与高可靠：为高并发与实时采集优化
-- 反封锁：内置[代理轮换](https://www.bright.cn/solutions/rotating-proxies)与[验证码自动识别](https://www.bright.cn/products/web-unlocker/captcha-solver)
-- 合规：全面符合 GDPR 与 CCPA
-- 全球覆盖：支持任意地区与语言的数据访问
-- 实时数据：低延迟的最新数据
-- 高级过滤：可用精细筛选定制采集
-- 按使用量付费：仅为成功响应付费
-- 免费试用：含 20 次免费 API 调用
-- 专属支持：7x24 小时技术支持
+### 主要功能
+- **可扩展且可靠：** 针对大规模实时数据采集进行了优化
+- **防封锁：** 内置[代理轮换](https://www.bright.cn/solutions/rotating-proxies)和[验证码破解](https://www.bright.cn/products/web-unlocker/captcha-solver)
+- **法律合规：** 完全符合 GDPR 和 CCPA 要求
+- **全球覆盖：** 可访问任何地区或语言的数据
+- **实时数据：** 以极低延迟获取最新数据
+- **高级筛选：** 使用精准筛选条件自定义数据提取
+- **按使用量付费：** 仅为成功的响应付费
+- **免费试用：** 包含 20 次免费 API 调用，助你快速开始
+- **专属支持：** 全天候技术支持
 
-👉 了解更多：[Bright Data Twitter 爬虫 API](https://www.bright.cn/products/web-scraper/twitter)
+👉 **了解更多：** [Bright Data Twitter 爬虫工具 API](https://www.bright.cn/products/web-scraper/twitter)
 
-### 快速开始指南
-- 注册：创建 [Bright Data 账户](https://www.bright.cn/)
-- 获取 API Token：在控制台获取 [API Key](https://docs.brightdata.com/general/account/api-token)
-- 选择 Endpoint：从下列可用 API 端点中选择
+### 快速入门指南
+- **注册：** 创建 [Bright Data 账户](https://www.bright.cn/)
+- **获取 API 令牌：** 从控制面板获取你的 [API 密钥](https://docs.brightdata.com/general/account/api-token)
+- **选择端点：** 从下方可用的 API 端点中选择
 
-### 1. 按 URL 抓取推文
-通过推文 URL 提取详细内容与互动指标。
+### 1. 按 URL 抓取帖子
+使用推文 URL 提取特定推文的详细互动指标和内容。
 
-<img width="700" alt="twitter-posts-scraper" src="https://github.com/luminati-io/twitter-scraper/blob/main/Images/409213804-9d07a475-2e3b-45fc-ae8e-ebcd7cef367b.png" />
+<img width="700" alt="twitter-posts-scraper" src="https://github.com/bright-cn/twitter-scraper/blob/main/Images/409213804-9d07a475-2e3b-45fc-ae8e-ebcd7cef367b.png" />
 
 
 #### 请求参数：
-| 字段  | 类型   | 必填 | 描述                 |
-|-------|--------|------|----------------------|
-| `url` | string | 是   | 推文的完整 URL       |
+| 字段 | 类型   | 必填 | 说明            |
+|-------|--------|----------|------------------------|
+| `url`   | 字符串 | 是      | 完整的 Twitter 帖子 URL |
 
-#### 示例请求：
+#### 请求示例：
 ```python
 # twitter_api/twitter_posts.py
 posts = [
@@ -153,21 +153,21 @@ posts = [
     }
 }
 ```
-👉 此处仅展示关键字段。查看[完整 JSON 响应](https://github.com/bright-cn/Twitter-Scraper/blob/main/twitter_data/twitter_posts.json)获取全部细节。立即试用我们的[推文抓取器](https://www.bright.cn/products/web-scraper/twitter/posts)。
+👉 此处仅显示关键字段。有关全部详细信息，请查看[完整 JSON 响应](https://github.com/bright-cn/twitter-scraper/blob/main/twitter_data/twitter_posts.json)。立即试用我们的专用 [Twitter 帖子抓取工具](https://www.bright.cn/products/web-scraper/twitter/posts)。
 
 ### 2. 抓取个人资料数据
-提取全面的个人资料信息，包括近期推文与互动指标。
+提取全面的个人资料信息，包括近期帖子和互动指标。
 
 <img width="600" alt="twitter-profile-scraper" src="https://github.com/bright-cn/twitter-scraper/blob/main/Images/409214197-3b3e2f0f-30bc-45d9-b9bc-13358b22a55a.png" />
 
 #### 请求参数：
 
-| 字段                   | 类型   | 必填 | 描述                     |
-|------------------------|--------|------|--------------------------|
-| `url`                  | string | 是   | Twitter 个人资料页面 URL |
-| `max_number_of_posts`  | number | 否   | 要返回的最近推文数量     |
+| 字段      | 类型   | 必填 | 说明                     |
+|------------|--------|----------|---------------------------------|
+| `url`        | 字符串 | 是      | Twitter 个人资料 URL       |
+| `max_number_of_posts`  | 数字 | 否       | 要检索的近期帖子数量 |
 
-#### 示例请求：
+#### 请求示例：
 ```python
 # twitter_api/twitter_profile_posts.py
 profiles = [
@@ -215,21 +215,21 @@ profiles = [
     ],
 }
 ```
-👉 此处仅展示关键字段。查看[完整 JSON 响应](https://github.com/bright-cn/Twitter-Scraper/blob/main/twitter_data/twitter_profile_posts.json)获取全部细节。立即试用我们的[个人资料抓取器](https://www.bright.cn/products/web-scraper/twitter/profile)。
+👉 此处仅显示关键字段。有关全部详细信息，请查看[完整 JSON 响应](https://github.com/bright-cn/twitter-scraper/blob/main/twitter_data/twitter_profile_posts.json)。立即试用我们的专用 [Twitter 个人资料爬虫工具](https://www.bright.cn/products/web-scraper/twitter/profile)。 
 
 ### 3. 按日期范围采集推文
-在指定日期范围内检索推文。
+检索指定日期范围内的帖子。
 
 #### 请求参数：
 
-| 参数          | 类型   | 必填 | 描述                         |
-|---------------|--------|------|------------------------------|
-| `url`         | string | 是   | Twitter 个人资料页面 URL     |
-| `start_date`  | string | 是   | 起始日期（ISO 格式）          |
-| `end_date`    | string | 是   | 结束日期（ISO 格式）          |
+| 参数  | 类型   | 必填 | 说明                   |
+|------------|--------|----------|-------------------------------|
+| `url`        | 字符串 | 是      | Twitter 个人资料 URL          |
+| `start_date` | 字符串 | 是      | 开始日期（ISO 格式）       |
+| `end_date`   | 字符串 | 是      | 结束日期（ISO 格式）         |
 
 
-#### 示例请求：
+#### 请求示例：
 ```python
 # twitter_api/twitter_posts_date_range.py
 profiles = [
@@ -274,38 +274,39 @@ profiles = [
     }
 }
 ```
-👉 此处仅展示关键字段。查看[完整 JSON 响应](https://github.com/bright-cn/Twitter-Scraper/blob/main/twitter_data/twitter_date_range_posts.json)获取全部细节。
+👉 此处仅显示关键字段。有关全部详细信息，请查看[完整 JSON 响应](https://github.com/bright-cn/twitter-scraper/blob/main/twitter_data/twitter_date_range_posts.json)。
 
-## 无代码爬虫选项
-若偏好图形化操作界面，我们也提供控制台中的无代码方案：
+## 无代码抓取工具选项
+对于偏好图形界面的用户，我们通过控制面板提供无代码解决方案：
 
-- 数分钟内完成配置
-- 全流程自动化数据采集
-- 结果直接下载（多种格式）
+- 几分钟内完成爬虫工具配置
+- 自动完成整个数据采集过程
+- 直接下载结果（支持多种格式）
 
-详细使用说明请参阅我们的[快速上手指南](https://github.com/bright-cn/Twitter-Scraper/blob/main/no-code-scraper.md)。
+有关使用无代码抓取工具的详细说明，请参阅我们的[入门指南](https://github.com/bright-cn/twitter-scraper/blob/main/no-code-scraper.md)。
+
 
 ## 数据采集方式
-可使用以下参数微调结果：
-| 参数                 | 类型      | 描述                                              | 示例                            |
-|----------------------|-----------|---------------------------------------------------|---------------------------------|
-| `limit`              | `integer` | 每个输入的最大返回结果数                          | `limit=10`                      |
-| `include_errors`     | `boolean` | 返回错误报告以便排查                              | `include_errors=true`           |
-| `notify`             | `url`     | 任务完成后的 Webhook 通知地址                      | `notify=https://notify-me.com/` |
-| `format`             | `enum`    | 输出格式（如 JSON、NDJSON、JSONL、CSV）           | `format=json`                   |
+你可以使用以下参数微调结果：
+| **参数**       | **类型**   | **说明**                                            | **示例**                  |
+|---------------------|------------|------------------------------------------------------------|------------------------------|
+| `limit`             | `integer`  | 每项输入的最大结果数                                   | `limit=10`                   |
+| `include_errors`    | `boolean`  | 获取用于故障排除的错误报告                     | `include_errors=true`        |
+| `notify`            | `url`      | 用于在完成时接收通知的 Webhook URL  | `notify=https://notify-me.com/` |
+| `format`            | `enum`     | 输出格式（例如 JSON、NDJSON、JSONL、CSV）         | `format=json`                |
 
-💡 提示：你还可以选择将数据[投递到外部存储](https://docs.brightdata.com/scraping-automation/web-data-apis/web-scraper-api/overview#via-deliver-to-external-storage)或[投递到 Webhook](https://docs.brightdata.com/scraping-automation/web-data-apis/web-scraper-api/overview#via-webhook)。
+💡 **专业提示：** 你还可以选择将数据传送到[外部存储](https://docs.brightdata.com/scraping-automation/web-data-apis/web-scraper-api/overview#via-deliver-to-external-storage)，或传送到 [Webhook](https://docs.brightdata.com/scraping-automation/web-data-apis/web-scraper-api/overview#via-webhook)。
 
 ## 支持与资源
-- API 文档：[Bright Data 文档](https://docs.brightdata.com/scraping-automation/web-data-apis/trigger-a-collection)
-- 抓取最佳实践：[避免被封锁](https://www.bright.cn/blog/web-data/web-scraping-without-getting-blocked)
-- 技术支持：[联系我们](mailto:support@brightdata.com)
+- **API 文档：** [Bright Data 文档](https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection)
+- **抓取最佳实践：** [避免被封锁](https://www.bright.cn/blog/web-data/web-scraping-without-getting-blocked)
+- **技术支持：** [联系我们](mailto:support@brightdata.com)
 
 ---
 
-对其他爬虫感兴趣？请查看下列列表：
+**对其他抓取工具感兴趣？请查看以下列表：**
 
-- [LinkedIn 爬虫](https://github.com/bright-cn/LinkedIn-Scraper)
-- [Google 新闻爬虫](https://github.com/bright-cn/Google-News-Scraper)
-- [Google 地图爬虫](https://github.com/bright-cn/Google-Maps-Scraper)
-- [Amazon 爬虫](https://github.com/bright-cn/Amazon-scraper)
+- [LinkedIn 抓取工具](https://github.com/bright-cn/LinkedIn-Scraper)
+- [Google 新闻爬虫工具](https://github.com/bright-cn/Google-News-Scraper)
+- [Google 地图抓取工具](https://github.com/bright-cn/Google-Maps-Scraper)
+- [Amazon 爬虫工具](https://github.com/bright-cn/Amazon-Scraper)
